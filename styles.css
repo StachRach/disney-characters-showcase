@@ -22,24 +22,43 @@ h2 {
     transform: translateY(-50%);
 }
 
+.container {
+    display: flex;
+}
+
 .disneyChar {
+    color: #36013f;
     overflow-x: auto;
-    background-color: #ddd;
-    margin-top: 70px;
-    margin-left: 30px;
+    margin: 100px 50px;
     width: 40%;
-    padding-left: 20px;
+    padding-top: 10px;
+    box-shadow: rgba(22, 31, 39, 0.42) 0px 60px 123px -25px,rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
+    border-radius: 10px;
+    border-color: rgb(213, 220, 226) rgb(213, 220, 226) rgb(184, 194, 204);
+}
+
+.myFav {
+    color: #36013f;
+    overflow-x: auto;
+    margin: 100px 50px auto;
+    width: 40%;
+    padding-top: 10px;
+    box-shadow: rgba(22, 31, 39, 0.42) 0px 60px 123px -25px,rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
+    border-radius: 10px;
+    border-color: rgb(213, 220, 226) rgb(213, 220, 226) rgb(184, 194, 204);
+    flex-grow: 1;
 }
 
 h3 {
-    font-size: 20px;
+    font-size: 25px;
+    text-align: center;
     padding-bottom: 15px;
 }
 
 ul {
     display: block-inline;
     list-style: none;
-    padding: 0;
+    padding: 0 auto;
     flex-wrap: nowrap;
     justify-content: space-between;
 }
@@ -60,15 +79,15 @@ ul li span {
     align-items: center;
     padding-bottom: 15px;
     font-size: 16px;
-    min-width: 20%;
-    max-width: 20%;
+    min-width: 17%;
+    max-width: 17%;
 }
 
 .pic {
-    min-width: 100px;
-    min-height: 100px;
-    max-width: 100px;
-    max-height: 100px;
+    min-width: 60px;
+    min-height: 60px;
+    max-width: 60px;
+    max-height: 60px;
     padding-right: 50px;
     border-radius: 15%;
 }
@@ -78,8 +97,7 @@ ul li span {
     flex-direction: row;
     justify-content: left;
     align-items: center;
-    min-width: 27%;
-    max-width: 27%;
+    min-width: 24%;
 }
 
 .film {
@@ -87,8 +105,4 @@ ul li span {
     flex-direction: row;
     justify-content: right;
     align-items: right;
-}
-
-ol {
-    margin-top: 75px;
 }
