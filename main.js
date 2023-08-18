@@ -22,6 +22,7 @@ function createListItem(list, character) {
     const filmCounts = document.createElement('span');
     const btnContainer = document.createElement('span');
     const favBtn = document.createElement('button');
+    const emptyStar = document.createElement('img');
 
     li.className = 'character';
 
@@ -54,7 +55,10 @@ function createListItem(list, character) {
 
     btnContainer.className = 'btn-container';
 
-    favBtn.textContent = 'Favorite';
+    emptyStar.src = 'empty-star.png';
+    emptyStar.alt = 'star';
+    emptyStar.className = 'star';
+    favBtn.appendChild(emptyStar);
     btnContainer.appendChild(favBtn);
 
     favBtn.addEventListener('click', () => {
