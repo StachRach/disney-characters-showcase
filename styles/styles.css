@@ -244,4 +244,187 @@ span button:hover {
 .star {
     width: 30px;
     height: 30px;
-  }
+}
+
+@media (max-width: 768px) {
+    .top-char {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top-char img {
+        width: 80%;
+        max-width: 300px;
+        height: auto;
+    }
+
+    .top-char p {
+        text-align: center;
+        padding: 10px;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .search img {
+        display: none;
+    }
+
+    .search h1 {
+        padding: 0;
+        text-align: center;
+    }
+
+    .footer {
+        padding: 10px 0;
+    }
+        .disneyChar ul li {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .disneyChar ul li span {
+        max-width: 100%;
+    }
+
+    .myFav ul li {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .myFav ul li span {
+        max-width: 100%;
+    }
+        .disneyChar ul {
+        padding: 0;
+    }
+
+    .disneyChar ul li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .disneyChar ul li span {
+        max-width: 25%;
+    }
+
+    .myFav ul {
+        padding: 0;
+    }
+
+    .myFav ul li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .myFav ul li span {
+        max-width: 25%;
+    }
+
+    .disneyChar{
+    overflow-x: auto;
+    margin: 10px 10px 10px 10px;
+    width: 100%;
+    }
+
+    .disneyChar ul {
+        padding: 0;
+    }
+
+    .disneyChar ul li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .disneyChar ul li span {
+        max-width: 25%;
+    }
+
+    .myFav ul {
+        padding: 0;
+    }
+
+    .myFav ul li {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px;
+        font-size: 14px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .myFav ul li span {
+        max-width: 25%;
+    }
+    .myFav {
+        overflow-x: auto;
+        margin: 10px 10px auto;
+        width: 100%;
+        padding-top: 10px;
+       flex-grow: 1;
+    }
+
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+    .top {
+        padding: 50px 0;
+        margin: 50px auto;
+        width: 90%; 
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .search {
+        padding: 50px 0;
+        margin: 50px auto;
+        width: 90%; 
+    }
+
+    .disneyChar, .myFav {
+        width: 100%; 
+        margin: 50px auto;
+    }
+
+    .footer {
+        padding: 20px 0;
+    }
+
+    .top-char img {
+        width: 80%; 
+        max-width: 250px;
+    }
+
+    .search-img img {
+        width: 80%; 
+        max-width: 200px;
+    }
+
+    .search h1 {
+        font-size: 24px; 
+        padding: 20px 0;
+    }
+
+    .disneyChar ul li, .myFav ul li {
+        padding: 15px;
+        font-size: 16px; 
+    }
+}

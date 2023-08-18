@@ -1,9 +1,11 @@
+// GLOBAL VARIABLES
 const ul = document.querySelector('ul');
 const fav = document.querySelector('#favs');
 const input = document.querySelector('input');
 const API = 'https://api.disneyapi.dev/character?pageSize=100';
 const characters = [];
 
+// FETCHING DATA
 function fetchCharacters() {
     fetch(API)
     .then(response => response.json())
@@ -14,6 +16,7 @@ function fetchCharacters() {
     .catch((error) => console.log(error));
 }
 
+// CREATING ITEMS IN CHARACTERS AND FAVORITES LIST
 function createListItem(list, character) {
     const li = document.createElement('li');
     const img = document.createElement('img');
@@ -22,7 +25,7 @@ function createListItem(list, character) {
     const filmCounts = document.createElement('span');
     const btnContainer = document.createElement('span');
     const favBtn = document.createElement('button');
-    const emptyStar = document.createElement('img');
+    const star = document.createElement('img');
 
     li.className = 'character';
 
@@ -36,10 +39,11 @@ function createListItem(list, character) {
     name.textContent = character.name;
     span.appendChild(name);
     
+    // SHOW IF ADDITIONAL TV SHOWS INFO SHOULD BE DISPLAYED
     if (character.tvShows.length > 0) {
         const tvShows = document.createElement('img');
         tvShows.className = 'tv';
-        tvShows.src = 'tv.png';
+        tvShows.src = 'images/tv.png';
         tvShows.alt = 'TV series';
         span.appendChild(tvShows);
 
@@ -53,16 +57,22 @@ function createListItem(list, character) {
         span.appendChild(info);
     }
 
+    // SHOW IF CHARACTER IS FAVORITE
     btnContainer.className = 'btn-container';
 
-    emptyStar.src = 'empty-star.png';
-    emptyStar.alt = 'star';
-    emptyStar.className = 'star';
-    favBtn.appendChild(emptyStar);
+    star.src = character.btnSource;
+    star.alt = 'star';
+    star.className = 'star';
+
+    favBtn.appendChild(star);
     btnContainer.appendChild(favBtn);
 
     favBtn.addEventListener('click', () => {
         character.favorite = !character.favorite;
+        character.btnSource = character.favorite ? 'images/star.png' : 'images/empty-star.png';
+        star.src = character.btnSource;
+
+        showDisney();
         showFavorites();
     });
 
@@ -73,6 +83,7 @@ function createListItem(list, character) {
     list.appendChild(li);
 }
 
+// SAVING CERTAIN INFO ABOUT CHARACTERS TO OBJECTS
 function showCharacters(data) {
     data.forEach((character, i) => {
         if (character.films.length > 0) {
@@ -83,6 +94,7 @@ function showCharacters(data) {
                 films: character.films,
                 tvShows: character.tvShows,
                 favorite: false,
+                btnSource: 'images/empty-star.png',
             };
 
             characters.push(obj);
@@ -93,12 +105,19 @@ function showCharacters(data) {
     makeTopList();
 }
 
+// UPDATING THE LISTS
 function showFavorites() {
     fav.querySelectorAll(':scope > .character').forEach(n => n.remove());
     const favorites = characters.filter(character => character.favorite);
     favorites.forEach(favorite => createListItem(fav, favorite));
 }
 
+function showDisney() {
+    ul.querySelectorAll(':scope > .character').forEach(n => n.remove());
+    characters.forEach(character => createListItem(ul, character));
+}
+
+// DISPLAYING TOP 3 CHARACTERS
 function makeTopList() {
     const sorted = characters.slice().sort((a, b) => b.films.length - a.films.length);
     const images = document.querySelectorAll('.top-char > img');
@@ -118,6 +137,7 @@ function makeTopList() {
 
 fetchCharacters();
 
+// SEARCHING FOR CHARACTERS
 input.addEventListener('input', e => {
     const value = e.target.value.toLowerCase();
     const filtered = characters.filter(character => character.name.toLowerCase().includes(value));
