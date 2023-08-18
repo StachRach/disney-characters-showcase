@@ -2,14 +2,12 @@ const ul = document.querySelector('ul');
 const fav = document.querySelector('#favs');
 const API = 'https://api.disneyapi.dev/character?pageSize=100';
 const characters = [];
-const temp = [];
 
 function fetchCharacters() {
     fetch(API)
     .then(response => response.json())
     .then(data => {
         console.log(`Amount of fetched characters: ${data.data.length}`);
-        temp.push(data.data);
         showCharacters(data.data);
     })
     .catch((error) => console.log(error));
@@ -71,7 +69,7 @@ function createListItem(list, character) {
 }
 
 function showCharacters(data) {
-    data.forEach((character, i = 0) => {
+    data.forEach((character, i) => {
         if (character.films.length > 0) {
             const obj = {
                 id: i,
@@ -82,17 +80,35 @@ function showCharacters(data) {
                 favorite: false,
             };
 
-            i++;
             characters.push(obj);
             createListItem(ul, obj);
         }
     });
+
+    makeTopList();
 }
 
 function showFavorites() {
     fav.querySelectorAll(':scope > .character').forEach(n => n.remove());
     const favorites = characters.filter(character => character.favorite);
     favorites.forEach(favorite => createListItem(fav, favorite));
+}
+
+function makeTopList() {
+    const sorted = characters.slice().sort((a, b) => b.films.length - a.films.length);
+    const images = document.querySelectorAll('.top-char > img');
+    const names = document.querySelectorAll('.name');
+    const films = document.querySelectorAll('.film-val');
+    const tvs = document.querySelectorAll('.tv-val');
+
+    images.forEach((image, i) => {
+        image.src = sorted[i].imageUrl;
+        image.alt = sorted[i].name;
+
+        names[i].textContent = sorted[i].name;
+        films[i].textContent = sorted[i].films.length;
+        tvs[i].textContent = sorted[i].tvShows.length;
+    });
 }
 
 fetchCharacters();
