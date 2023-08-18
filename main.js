@@ -1,5 +1,6 @@
 const ul = document.querySelector('ul');
 const fav = document.querySelector('#favs');
+const input = document.querySelector('input');
 const API = 'https://api.disneyapi.dev/character?pageSize=100';
 const characters = [];
 
@@ -112,3 +113,10 @@ function makeTopList() {
 }
 
 fetchCharacters();
+
+input.addEventListener('input', e => {
+    const value = e.target.value.toLowerCase();
+    const filtered = characters.filter(character => character.name.toLowerCase().includes(value));
+    fav.querySelectorAll(':scope > .character').forEach(n => n.remove());
+    filtered.forEach(character => createListItem(fav, character));
+})

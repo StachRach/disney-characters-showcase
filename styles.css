@@ -127,6 +127,31 @@ span button:hover {
     font-size: 22px;
 }
 
+.search {
+    text-align: center;
+    padding: 15px 0 15px 0;
+    margin: 100px auto;
+    width: 80%;
+    box-shadow: rgba(22, 31, 39, 0.42) 0px 60px 123px -25px,rgba(19, 26, 32, 0.08) 0px 35px 75px -35px;
+    border-radius: 10px;
+    border-color: rgb(213, 220, 226) rgb(213, 220, 226) rgb(184, 194, 204);
+    color: #36013f;
+}
+
+.search img {
+    padding: 0 30px;
+}
+
+.search h1 {
+    padding-top: 50px;
+    padding-right: 40px;
+}
+
+#find {
+    width: 300px;
+    height: 30px;
+}
+
 .disneyChar {
     color: #36013f;
     overflow-x: auto;
