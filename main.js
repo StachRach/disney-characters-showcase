@@ -21,6 +21,8 @@ function createListItem(list, character) {
     const span = document.createElement('span');
     const name = document.createElement('p');
     const filmCounts = document.createElement('span');
+    const btnContainer = document.createElement('span');
+    const favBtn = document.createElement('button');
 
     li.className = 'character';
 
@@ -51,9 +53,20 @@ function createListItem(list, character) {
         span.appendChild(info);
     }
 
+    btnContainer.className = 'btn-container';
+
+    favBtn.textContent = 'Favorite';
+    btnContainer.appendChild(favBtn);
+
+    favBtn.addEventListener('click', () => {
+        character.favorite = !character.favorite;
+        showFavorites();
+    });
+
     li.appendChild(img);
     li.appendChild(span);
     li.appendChild(filmCounts);
+    li.appendChild(btnContainer);
     list.appendChild(li);
 }
 
