@@ -1,11 +1,9 @@
-// GLOBAL VARIABLES
 const ul = document.querySelector('ul');
 const fav = document.querySelector('#favs');
 const input = document.querySelector('input');
 const API = 'https://api.disneyapi.dev/character?pageSize=100';
 const characters = [];
 
-// FETCHING DATA
 function fetchCharacters() {
     fetch(API)
     .then(response => response.json())
@@ -13,10 +11,9 @@ function fetchCharacters() {
         console.log(`Amount of fetched characters: ${data.data.length}`);
         showCharacters(data.data);
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.error(error));
 }
 
-// CREATING ITEMS IN CHARACTERS AND FAVORITES LIST
 function createListItem(list, character) {
     const li = document.createElement('li');
     const img = document.createElement('img');
@@ -38,8 +35,7 @@ function createListItem(list, character) {
 
     name.textContent = character.name;
     span.appendChild(name);
-    
-    // SHOW IF ADDITIONAL TV SHOWS INFO SHOULD BE DISPLAYED
+
     if (character.tvShows.length > 0) {
         const tvShows = document.createElement('img');
         tvShows.className = 'tv';
@@ -57,7 +53,6 @@ function createListItem(list, character) {
         span.appendChild(info);
     }
 
-    // SHOW IF CHARACTER IS FAVORITE
     btnContainer.className = 'btn-container';
 
     star.src = character.btnSource;
@@ -83,7 +78,6 @@ function createListItem(list, character) {
     list.appendChild(li);
 }
 
-// SAVING CERTAIN INFO ABOUT CHARACTERS TO OBJECTS
 function showCharacters(data) {
     data.forEach((character, i) => {
         if (character.films.length > 0) {
@@ -105,7 +99,6 @@ function showCharacters(data) {
     makeTopList();
 }
 
-// UPDATING THE LISTS
 function showFavorites() {
     fav.querySelectorAll(':scope > .character').forEach(n => n.remove());
     const favorites = characters.filter(character => character.favorite);
@@ -117,7 +110,6 @@ function showDisney() {
     characters.forEach(character => createListItem(ul, character));
 }
 
-// DISPLAYING TOP 3 CHARACTERS
 function makeTopList() {
     const sorted = characters.slice().sort((a, b) => b.films.length - a.films.length);
     const images = document.querySelectorAll('.top-char > img');
@@ -137,10 +129,11 @@ function makeTopList() {
 
 fetchCharacters();
 
-// SEARCHING FOR CHARACTERS
 input.addEventListener('input', e => {
     const value = e.target.value.toLowerCase();
-    const filtered = characters.filter(character => character.name.toLowerCase().includes(value));
+    const filtered = characters
+        .filter(character => character.name.toLowerCase().includes(value))
+        .filter(character => character.favorite);
     fav.querySelectorAll(':scope > .character').forEach(n => n.remove());
     filtered.forEach(character => createListItem(fav, character));
 })
